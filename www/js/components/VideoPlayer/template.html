@@ -1,0 +1,35 @@
+<div style="position: absolute; top: 0; bottom: 66%; left: 0; right: 0">
+  <video controls
+         ng-show="vm.selectedVideo != null"
+         style="height: 100%; width: 100%"
+         ng-if="vm.selectedVideo">
+    <source ng-repeat="source in vm.selectedVideo.Sources" ng-src="{{ source.src }}" type="{{ source.type }}">
+  </video>
+  <div ng-show="vm.selectedVideo == null" style="text-align: center; color: #999; margin-top: 1em">
+    <i class="ion-ios-videocam" style="font-size: 100px;"></i>
+    <div>Select a video below</div>
+  </div>
+</div>
+<div style="position: absolute; top: 33%; bottom: 0; left: 0; right: 0">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-click="vm.select(null)">
+        <div style="position: absolute; left: 0; top: 0; width: 30px; font-size: 24px; padding: 16px;" ng-show="vm.selectedVideo == null">
+          <i class="ion-checkmark-circled"></i>
+        </div>
+        <div style="padding-left: 32px">
+          No Video
+        </div>
+      </ion-item>
+      <ion-item ng-repeat="video in vm.videos" ng-click="vm.select(video)">
+        <div style="position: absolute; left: 0; top: 0; width: 30px; font-size: 24px; padding: 16px;" ng-show="vm.selectedVideo == video">
+          <i class="ion-checkmark-circled"></i>
+        </div>
+        <div style="padding-left: 32px">
+          <div>{{ video.Title }}</div>
+          <div style="font-size: 0.75em; color: #999">{{ video.Sources[0].src }}</div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>
